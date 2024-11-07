@@ -27,7 +27,6 @@ class _BallBouncingScreenState extends State<BallBouncingScreen>
         CurvedAnimation(
             parent: ballBouncingController, curve: Curves.bounceOut))
       ..addListener(ballBouncingListener);
-    ballBouncingController.repeat(reverse: true);
   }
 
   @override
@@ -42,6 +41,7 @@ class _BallBouncingScreenState extends State<BallBouncingScreen>
     screenHeight = MediaQuery.sizeOf(context).height * 0.7;
     screenWidth = MediaQuery.sizeOf(context).width;
     return Scaffold(
+      appBar: AppBar(),
       body: Column(
         children: [
           Expanded(
@@ -50,12 +50,15 @@ class _BallBouncingScreenState extends State<BallBouncingScreen>
               Positioned(
                   top: ballBouncingAnimation.value * (screenHeight),
                   left: screenWidth / 2 - ballSize / 2,
-                  child: Container(
-                    width: ballSize,
-                    height: ballSize,
-                    decoration: BoxDecoration(
-                      color: Colors.redAccent,
-                      borderRadius: BorderRadius.circular(100),
+                  child: GestureDetector(
+                    onDoubleTap: initAnimation,
+                    child: Container(
+                      width: ballSize,
+                      height: ballSize,
+                      decoration: BoxDecoration(
+                        color: Colors.redAccent,
+                        borderRadius: BorderRadius.circular(100),
+                      ),
                     ),
                   ))
             ],
@@ -66,4 +69,9 @@ class _BallBouncingScreenState extends State<BallBouncingScreen>
   }
 
   void ballBouncingListener() => setState(() {});
+
+  void initAnimation() {
+    if (ballBouncingController.isAnimating) return;
+    ballBouncingController.repeat(reverse: true);
+  }
 }
