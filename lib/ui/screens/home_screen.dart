@@ -14,7 +14,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(
+        length: 2,
+        vsync: this,
+        animationDuration: const Duration(milliseconds: 250));
   }
 
   @override
@@ -39,10 +42,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   _toListAnimations() {
-    _tabController.animateTo(1, duration: const Duration(milliseconds: 250));
+    _tabController.animateTo(1, curve: Curves.fastEaseInToSlowEaseOut);
   }
 
   _backToHome() {
-    _tabController.animateTo(0);
+    _tabController.animateTo(0, curve: Curves.fastEaseInToSlowEaseOut);
   }
 }
