@@ -1,15 +1,16 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:simpleanimations/ui/widgets/border_animation_box_widget.dart';
 
-class LoadingSpinerScreen extends StatefulWidget {
-  const LoadingSpinerScreen({super.key});
+class LoadingSpinerWidget extends StatefulWidget {
+  const LoadingSpinerWidget({super.key});
 
   @override
-  State<LoadingSpinerScreen> createState() => _LoadingSpinerScreenState();
+  State<LoadingSpinerWidget> createState() => _LoadingSpinerWidgetState();
 }
 
-class _LoadingSpinerScreenState extends State<LoadingSpinerScreen>
+class _LoadingSpinerWidgetState extends State<LoadingSpinerWidget>
     with TickerProviderStateMixin {
   late AnimationController controller;
   late Animation<double> animation;
@@ -37,25 +38,16 @@ class _LoadingSpinerScreenState extends State<LoadingSpinerScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Expanded(
-            child: Center(
-              child: SizedBox(
-                width: 200,
-                height: 200,
-                child: CustomPaint(
-                  painter: SpinnerPainting(
-                    percentage: animation.value,
-                    color: Colors.deepOrangeAccent,
-                  ),
-                ),
-              ),
-            ),
+    return BorderAnimationBox(
+      child: SizedBox(
+        width: 100,
+        height: 100,
+        child: CustomPaint(
+          painter: SpinnerPainting(
+            percentage: animation.value,
+            color: Colors.deepOrangeAccent,
           ),
-        ],
+        ),
       ),
     );
   }

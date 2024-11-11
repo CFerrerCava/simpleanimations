@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:simpleanimations/ui/widgets/border_animation_box_widget.dart';
 
-class SlideInScreen extends StatefulWidget {
+class SlideInWidget extends StatefulWidget {
   final bool isOpposite;
-  const SlideInScreen({super.key, this.isOpposite = false});
+  const SlideInWidget({super.key, this.isOpposite = false});
 
   @override
-  State<SlideInScreen> createState() => _SlideInScreenState();
+  State<SlideInWidget> createState() => _SlideInWidgetState();
 }
 
-class _SlideInScreenState extends State<SlideInScreen>
+class _SlideInWidgetState extends State<SlideInWidget>
     with TickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> animation;
@@ -41,23 +42,19 @@ class _SlideInScreenState extends State<SlideInScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Center(
-            child: SlideTransition(
-              position: animation,
-              child: Container(
-                alignment: Alignment.center,
-                color: Colors.redAccent,
-                width: 250,
-                height: 250,
-                child: Text(widget.isOpposite ? 'Slide out' : 'Slide in'),
-              ),
-            ),
+    return BorderAnimationBox(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 25),
+        child: SlideTransition(
+          position: animation,
+          child: Container(
+            alignment: Alignment.center,
+            color: Colors.redAccent,
+            width: 50,
+            height: 50,
+            child: Text(widget.isOpposite ? 'Slide out' : 'Slide in'),
           ),
-        ],
+        ),
       ),
     );
   }

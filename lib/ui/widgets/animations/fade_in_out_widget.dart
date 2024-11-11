@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:simpleanimations/ui/widgets/border_animation_box_widget.dart';
 
-class FadeInOutScreen extends StatefulWidget {
-  const FadeInOutScreen({super.key});
+class FadeInOutWidget extends StatefulWidget {
+  const FadeInOutWidget({super.key});
 
   @override
-  State<FadeInOutScreen> createState() => _FadeInOutScreenState();
+  State<FadeInOutWidget> createState() => _FadeInOutWidgetState();
 }
 
-class _FadeInOutScreenState extends State<FadeInOutScreen>
+class _FadeInOutWidgetState extends State<FadeInOutWidget>
     with TickerProviderStateMixin {
   late AnimationController animationController;
   late Animation animation;
@@ -32,27 +33,18 @@ class _FadeInOutScreenState extends State<FadeInOutScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Expanded(
-            child: Center(
-              child: Opacity(
-                opacity: 1.0 - animation.value,
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 200,
-                  height: 200,
-                  color: Colors.amberAccent,
-                  child: const Text(
-                    'Fade in out',
-                  ),
-                ),
-              ),
-            ),
-          )
-        ],
+    return BorderAnimationBox(
+      child: Opacity(
+        opacity: 1.0 - animation.value,
+        child: Container(
+          alignment: Alignment.center,
+          width: 100,
+          height: 100,
+          color: Colors.amberAccent,
+          child: const Text(
+            'Fade in out',
+          ),
+        ),
       ),
     );
   }

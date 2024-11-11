@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simpleanimations/ui/widgets/home_body.dart';
-import 'package:simpleanimations/ui/widgets/list_animations_tab.dart';
+import 'package:simpleanimations/ui/widgets/wrap_animation_tab.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             HomeBody(
               onNext: _toListAnimations,
             ),
-            ListAnimationsTab(
+            WrapAnimationTab(
               onBefore: _backToHome,
             ),
           ],

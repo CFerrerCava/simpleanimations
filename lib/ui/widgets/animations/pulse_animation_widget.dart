@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/gestures/long_press.dart';
+import 'package:simpleanimations/ui/widgets/border_animation_box_widget.dart';
 
 class PulseAnimationScreen extends StatefulWidget {
   const PulseAnimationScreen({super.key});
@@ -9,7 +11,6 @@ class PulseAnimationScreen extends StatefulWidget {
 
 class _PulseAnimationScreenState extends State<PulseAnimationScreen>
     with TickerProviderStateMixin {
-  Size boxSize = const Size(100, 100);
   late AnimationController animationController;
   late Animation<double> animation;
   bool isRepeated = false;
@@ -20,9 +21,10 @@ class _PulseAnimationScreenState extends State<PulseAnimationScreen>
         vsync: this,
         reverseDuration: const Duration(milliseconds: 250),
         duration: const Duration(seconds: 1));
-    animation = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(
+    animation = Tween<double>(begin: 1, end: 0).animate(CurvedAnimation(
         parent: animationController, curve: Curves.fastLinearToSlowEaseIn));
     animationController.addListener(_listener);
+    animationController.repeat(reverse: true);
   }
 
   @override
@@ -33,40 +35,21 @@ class _PulseAnimationScreenState extends State<PulseAnimationScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextButton(
-              onPressed: isRepeated ? stopRepeated : repeated,
-              child: Text(isRepeated ? 'Pulse to stop' : 'Pulse to repeated')),
-          Expanded(
-            child: Center(
-              child: GestureDetector(
-                onTap: onTap,
-                onLongPressDown: (details) {
-                  animationController.animateTo(1,
-                      curve: Curves.decelerate,
-                      duration: const Duration(seconds: 4));
-                },
-                onLongPressUp: () => animationController.reverse(),
-                onLongPressEnd: (_) => animationController.reverse(),
-                child: Container(
-                  alignment: Alignment.center,
-                  width: boxSize.width * (1 + animation.value),
-                  height: boxSize.height * (1 + animation.value),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(100),
-                    color: Colors.redAccent,
-                  ),
-                  child: const Text('llll'),
-                ),
-              ),
+    return BorderAnimationBox(
+      child: SizedBox(
+        width: 100,
+        height: 100,
+        child: Transform.scale(
+          scale: 0.7 * (1 + animation.value),
+          child: Container(
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(100),
+              color: Colors.redAccent,
             ),
-          )
-        ],
+            child: const Text('llll'),
+          ),
+        ),
       ),
     );
   }
@@ -98,5 +81,14 @@ class _PulseAnimationScreenState extends State<PulseAnimationScreen>
 
   void changeUpdateState() {
     setState(() => isRepeated = !isRepeated);
+  }
+
+  void onLongPressDown(LongPressDownDetails details) {
+    animationController.animateTo(1,
+        curve: Curves.decelerate, duration: const Duration(seconds: 4));
+  }
+
+  void reverse() {
+    animationController.reverse();
   }
 }

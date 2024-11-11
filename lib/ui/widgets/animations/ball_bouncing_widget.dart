@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:simpleanimations/ui/widgets/border_animation_box_widget.dart';
 
-class BallBouncingScreen extends StatefulWidget {
-  const BallBouncingScreen({super.key});
+class BallBouncingWidget extends StatefulWidget {
+  const BallBouncingWidget({super.key});
 
   @override
-  State<BallBouncingScreen> createState() => _BallBouncingScreenState();
+  State<BallBouncingWidget> createState() => _BallBouncingWidgetState();
 }
 
-class _BallBouncingScreenState extends State<BallBouncingScreen>
+class _BallBouncingWidgetState extends State<BallBouncingWidget>
     with TickerProviderStateMixin {
   late AnimationController ballBouncingController;
   late Animation<double> ballBouncingAnimation;
-  double screenHeight = 250;
-  double screenWidth = 0;
-  double ballSize = 100;
+
+  double ballSize = 50;
 
   @override
   void initState() {
@@ -27,6 +27,7 @@ class _BallBouncingScreenState extends State<BallBouncingScreen>
         CurvedAnimation(
             parent: ballBouncingController, curve: Curves.bounceOut))
       ..addListener(ballBouncingListener);
+    ballBouncingController.repeat(reverse: true);
   }
 
   @override
@@ -38,20 +39,18 @@ class _BallBouncingScreenState extends State<BallBouncingScreen>
 
   @override
   Widget build(BuildContext context) {
-    screenHeight = MediaQuery.sizeOf(context).height * 0.7;
-    screenWidth = MediaQuery.sizeOf(context).width;
-    return Scaffold(
-      appBar: AppBar(),
-      body: Column(
+    return BorderAnimationBox(
+      child: Column(
         children: [
-          Expanded(
-              child: Stack(
-            children: [
-              Positioned(
-                  top: ballBouncingAnimation.value * (screenHeight),
-                  left: screenWidth / 2 - ballSize / 2,
-                  child: GestureDetector(
-                    onDoubleTap: initAnimation,
+          const Text('Ball Bouncing animation'),
+          SizedBox(
+            width: screenSize(),
+            height: screenSize(),
+            child: Stack(
+              children: [
+                Positioned(
+                    top: ballBouncingAnimation.value * screenSize(),
+                    left: screenSize() / 2 - ballSize / 2,
                     child: Container(
                       width: ballSize,
                       height: ballSize,
@@ -59,10 +58,10 @@ class _BallBouncingScreenState extends State<BallBouncingScreen>
                         color: Colors.redAccent,
                         borderRadius: BorderRadius.circular(100),
                       ),
-                    ),
-                  ))
-            ],
-          ))
+                    ))
+              ],
+            ),
+          )
         ],
       ),
     );
@@ -70,8 +69,7 @@ class _BallBouncingScreenState extends State<BallBouncingScreen>
 
   void ballBouncingListener() => setState(() {});
 
-  void initAnimation() {
-    if (ballBouncingController.isAnimating) return;
-    ballBouncingController.repeat(reverse: true);
+  double screenSize() {
+    return MediaQuery.sizeOf(context).width * .3;
   }
 }
