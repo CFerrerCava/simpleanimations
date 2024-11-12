@@ -82,7 +82,7 @@ class _FlipCardWidgetState extends State<FlipCardWidget> {
     return AnimatedBuilder(
       animation: rotateAnimation,
       child: child,
-      builder: (context, builderChild) {
+      builder: (_, builderChild) {
         final isUnder = (ValueKey(flipX) != widget.key);
         var tilt = ((animation.value - 0.5).abs() - 0.5) * 0.003;
         tilt *= isUnder ? -1.0 : 1.0;

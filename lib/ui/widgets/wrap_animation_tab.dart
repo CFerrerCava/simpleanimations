@@ -5,6 +5,7 @@ import 'package:simpleanimations/ui/widgets/animations/elastic_button_widget.dar
 import 'package:simpleanimations/ui/widgets/animations/fade_in_out_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/flip_card_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/loading_spiner_widget.dart';
+import 'package:simpleanimations/ui/widgets/animations/progress_bar_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/pulse_animation_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/rotation_360.dart';
 import 'package:simpleanimations/ui/widgets/animations/scale_up_down.dart';
@@ -56,5 +57,6 @@ class _WrapAnimationTabState extends State<WrapAnimationTab> {
         const ScaleUpDown(),
         const ColorChangeAnimation(),
         const FlipCardWidget(),
+        const ProgressBarWidget()
       ];
 }
