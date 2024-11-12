@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simpleanimations/ui/widgets/animations/ball_bouncing_widget.dart';
+import 'package:simpleanimations/ui/widgets/animations/color_change_animation.dart';
 import 'package:simpleanimations/ui/widgets/animations/elastic_button_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/fade_in_out_widget.dart';
+import 'package:simpleanimations/ui/widgets/animations/flip_card_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/loading_spiner_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/pulse_animation_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/rotation_360.dart';
@@ -23,19 +25,9 @@ class _WrapAnimationTabState extends State<WrapAnimationTab> {
       padding: const EdgeInsets.all(12),
       child: Column(
         children: [
-          const Expanded(
+          Expanded(
             child: Wrap(
-              children: [
-                BallBouncingWidget(),
-                ElasticButtonWidget(),
-                FadeInOutWidget(),
-                LoadingSpinerWidget(),
-                PulseAnimationScreen(),
-                SlideInWidget(),
-                SlideInWidget(isOpposite: true),
-                Rotation360(),
-                ScaleUpDown(),
-              ],
+              children: getAnimations(),
             ),
           ),
           ElevatedButton(
@@ -51,4 +43,18 @@ class _WrapAnimationTabState extends State<WrapAnimationTab> {
       ),
     );
   }
+
+  List<Widget> getAnimations() => [
+        const BallBouncingWidget(),
+        const ElasticButtonWidget(),
+        const FadeInOutWidget(),
+        const LoadingSpinerWidget(),
+        const PulseAnimationScreen(),
+        const SlideInWidget(),
+        const SlideInWidget(isOpposite: true),
+        const Rotation360(),
+        const ScaleUpDown(),
+        const ColorChangeAnimation(),
+        const FlipCardWidget(),
+      ];
 }
