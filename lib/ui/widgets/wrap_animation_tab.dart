@@ -12,6 +12,7 @@ import 'package:simpleanimations/ui/widgets/animations/rotation_360.dart';
 import 'package:simpleanimations/ui/widgets/animations/scale_up_down.dart';
 import 'package:simpleanimations/ui/widgets/animations/shimmer_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/slide_in_screen.dart';
+import 'package:simpleanimations/ui/widgets/animations/slide_transition_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/zoom_effect_widget.dart';
 
 class WrapAnimationTab extends StatefulWidget {
@@ -66,5 +67,6 @@ class _WrapAnimationTabState extends State<WrapAnimationTab> {
         const ZoomEffectWidget(),
         const CurtainRevealWidget(),
         const ShimmerWidget(),
+        const SlideTransitionWidget(),
       ];
 }
