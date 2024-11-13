@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simpleanimations/ui/widgets/animations/ball_bouncing_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/color_change_animation.dart';
+import 'package:simpleanimations/ui/widgets/animations/curtain_reveal_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/elastic_button_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/fade_in_out_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/flip_card_widget.dart';
@@ -10,6 +11,7 @@ import 'package:simpleanimations/ui/widgets/animations/pulse_animation_widget.da
 import 'package:simpleanimations/ui/widgets/animations/rotation_360.dart';
 import 'package:simpleanimations/ui/widgets/animations/scale_up_down.dart';
 import 'package:simpleanimations/ui/widgets/animations/slide_in_screen.dart';
+import 'package:simpleanimations/ui/widgets/animations/zoom_effect_widget.dart';
 
 class WrapAnimationTab extends StatefulWidget {
   final Function() onBefore;
@@ -27,8 +29,10 @@ class _WrapAnimationTabState extends State<WrapAnimationTab> {
       child: Column(
         children: [
           Expanded(
-            child: Wrap(
-              children: getAnimations(),
+            child: SingleChildScrollView(
+              child: Wrap(
+                children: getAnimations(),
+              ),
             ),
           ),
           ElevatedButton(
@@ -57,6 +61,8 @@ class _WrapAnimationTabState extends State<WrapAnimationTab> {
         const ScaleUpDown(),
         const ColorChangeAnimation(),
         const FlipCardWidget(),
-        const ProgressBarWidget()
+        const ProgressBarWidget(),
+        const ZoomEffectWidget(),
+        const CurtainRevealWidget(),
       ];
 }
