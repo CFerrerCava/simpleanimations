@@ -10,6 +10,7 @@ import 'package:simpleanimations/ui/widgets/animations/progress_bar_widget.dart'
 import 'package:simpleanimations/ui/widgets/animations/pulse_animation_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/rotation_360.dart';
 import 'package:simpleanimations/ui/widgets/animations/scale_up_down.dart';
+import 'package:simpleanimations/ui/widgets/animations/shimmer_widget.dart';
 import 'package:simpleanimations/ui/widgets/animations/slide_in_screen.dart';
 import 'package:simpleanimations/ui/widgets/animations/zoom_effect_widget.dart';
 
@@ -64,5 +65,6 @@ class _WrapAnimationTabState extends State<WrapAnimationTab> {
         const ProgressBarWidget(),
         const ZoomEffectWidget(),
         const CurtainRevealWidget(),
+        const ShimmerWidget(),
       ];
 }
